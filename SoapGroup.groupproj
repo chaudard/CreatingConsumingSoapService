@@ -1,0 +1,60 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{5CE6B993-F114-44D8-97F5-80578A520676}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="Server\projects\StandAloneService.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Client\projects\SOAPClient.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Server\projects\ISAPIService.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="StandAloneService">
+			<MSBuild Projects="Server\projects\StandAloneService.dproj"/>
+		</Target>
+		<Target Name="StandAloneService:Clean">
+			<MSBuild Targets="Clean" Projects="Server\projects\StandAloneService.dproj"/>
+		</Target>
+		<Target Name="StandAloneService:Make">
+			<MSBuild Targets="Make" Projects="Server\projects\StandAloneService.dproj"/>
+		</Target>
+		<Target Name="SOAPClient">
+			<MSBuild Projects="Client\projects\SOAPClient.dproj"/>
+		</Target>
+		<Target Name="SOAPClient:Clean">
+			<MSBuild Targets="Clean" Projects="Client\projects\SOAPClient.dproj"/>
+		</Target>
+		<Target Name="SOAPClient:Make">
+			<MSBuild Targets="Make" Projects="Client\projects\SOAPClient.dproj"/>
+		</Target>
+		<Target Name="ISAPIService">
+			<MSBuild Projects="Server\projects\ISAPIService.dproj"/>
+		</Target>
+		<Target Name="ISAPIService:Clean">
+			<MSBuild Targets="Clean" Projects="Server\projects\ISAPIService.dproj"/>
+		</Target>
+		<Target Name="ISAPIService:Make">
+			<MSBuild Targets="Make" Projects="Server\projects\ISAPIService.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="StandAloneService;SOAPClient;ISAPIService"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="StandAloneService:Clean;SOAPClient:Clean;ISAPIService:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="StandAloneService:Make;SOAPClient:Make;ISAPIService:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>
